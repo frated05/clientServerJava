@@ -3,7 +3,7 @@ import java.net.*;
 
 public class serverJava {
     public static void main(String[] args) {
-        int port = 12347; // Porta del server
+        int port = 12345; // Porta del server
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
         	String clientMessage;
