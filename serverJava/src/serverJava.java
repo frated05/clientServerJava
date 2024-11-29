@@ -32,8 +32,8 @@ public class serverJava {
                 System.out.println("Client: " + clientMessage);
 
                 // Scrive una risposta al client
-                System.out.print("Server: ");
-                serverMessage = consoleReader.readLine();
+                System.out.print("Server: " + clientMessage.toUpperCase());
+                //serverMessage = consoleReader.readLine();
                 writer.println(serverMessage);
 
                 if (clientMessage.equalsIgnoreCase("stop")) {
