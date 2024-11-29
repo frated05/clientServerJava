@@ -24,7 +24,7 @@ public class clientJava {
                 clientMessage = consoleReader.readLine();
                 writer.println(clientMessage);
 
-                if (clientMessage.equalsIgnoreCase("bye")) {
+                if (clientMessage.equalsIgnoreCase("stop")) {
                     System.out.println("Connessione chiusa dal client.");
                     break;
                 }
