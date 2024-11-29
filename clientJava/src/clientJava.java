@@ -4,7 +4,7 @@ import java.net.*;
 public class clientJava {
     public static void main(String[] args) {
         String hostname = "10.130.1.118"; // Nome host o IP del server
-        int port = 12347; // Porta del server
+        int port = 12345; // Porta del server
 
         try (Socket socket = new Socket(hostname, port)) {
             // Stream di input/output
@@ -16,7 +16,7 @@ public class clientJava {
             String clientMessage;
             String serverMessage;
 
-            System.out.println("Connesso al server. Pronto per comunicare...");
+            System.out.println("Connesso al server. attesa accettazione");
 
             while (true) {
                 // Scrive un messaggio al server
