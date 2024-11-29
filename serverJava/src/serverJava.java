@@ -3,7 +3,7 @@ import java.net.*;
 
 public class serverJava {
     public static void main(String[] args) {
-        int port = 12345; // Porta del server
+        int port = 12346; // Porta del server
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server in ascolto sulla porta " + port);
@@ -36,7 +36,7 @@ public class serverJava {
                 serverMessage = consoleReader.readLine();
                 writer.println(serverMessage);
 
-                if (serverMessage.equalsIgnoreCase("bye")) {
+                if (serverMessage.equalsIgnoreCase("stop")) {
                     System.out.println("Connessione chiusa dal server.");
                     break;
                 }
