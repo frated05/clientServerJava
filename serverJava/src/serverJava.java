@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class TCPServer {
+public class serverJava {
     public static void main(String[] args) {
         int port = 12345; // Porta del server
         
