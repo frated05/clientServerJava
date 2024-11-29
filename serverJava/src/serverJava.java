@@ -36,7 +36,7 @@ public class serverJava {
                 //serverMessage = consoleReader.readLine();
                 //writer.println(serverMessage);
                 //xc
-                writer.println("Server: " + clientMessage.toUpperCase());
+                writer.println(clientSocket.getInetAddress() + ":" +  clientSocket.getPort());
                 if (clientMessage.equalsIgnoreCase("stop")) {
                     System.out.println("Connessione chiusa dal client.");
                     break;
