@@ -28,19 +28,17 @@ public class clientJava {
                     System.out.println("Connessione chiusa dal client.");
                     break;
                 }
+                
 
                 // Legge la risposta dal server
                 serverMessage = reader.readLine();
-                if (serverMessage == null || serverMessage.equalsIgnoreCase("bye")) {
-                    System.out.println("Il server ha chiuso la connessione.");
-                    break;
-                }
                 System.out.println(serverMessage);
             }
         } catch (UnknownHostException ex) {
             System.out.println("Server non trovato: " + ex.getMessage());
         } catch (IOException ex) {
             System.out.println("Errore I/O: " + ex.getMessage());
+            //test
         }
     }
 }
