@@ -37,7 +37,7 @@ public class serverJava {
                 //writer.println(serverMessage);
                 //xc
                 writer.println(clientSocket.getInetAddress() + ":" +  clientSocket.getPort());
-                }
+                
             }
 
             clientSocket.close();
