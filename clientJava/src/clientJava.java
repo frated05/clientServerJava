@@ -16,7 +16,7 @@ public class clientJava {
             String clientMessage;
             String serverMessage;
 
-            System.out.println("Connesso al server. Pronto per comunicare...");
+            System.out.println("Connesso al server. attesa accettazione");
 
             while (true) {
                 // Scrive un messaggio al server
