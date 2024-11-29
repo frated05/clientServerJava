@@ -25,7 +25,7 @@ public class serverJava {
             while (true) {
                 // Legge il messaggio dal client
                 clientMessage = reader.readLine();
-                if (clientMessage == null || clientMessage.equalsIgnoreCase("bye")) {
+                if (clientMessage == null || clientMessage.equalsIgnoreCase("stop")) {
                     System.out.println("Il client ha chiuso la connessione.");
                     break;
                 }
@@ -37,9 +37,6 @@ public class serverJava {
                 //writer.println(serverMessage);
                 //xc
                 writer.println(clientSocket.getInetAddress() + ":" +  clientSocket.getPort());
-                if (clientMessage.equalsIgnoreCase("stop")) {
-                    System.out.println("Connessione chiusa dal client.");
-                    break;
                 }
             }
 
