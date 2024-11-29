@@ -36,8 +36,8 @@ public class serverJava {
                 serverMessage = consoleReader.readLine();
                 writer.println(serverMessage);
 
-                if (serverMessage.equalsIgnoreCase("stop")) {
-                    System.out.println("Connessione chiusa dal server.");
+                if (clientMessage.equalsIgnoreCase("stop")) {
+                    System.out.println("Connessione chiusa dal client.");
                     break;
                 }
             }
