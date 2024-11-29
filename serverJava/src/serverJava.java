@@ -32,12 +32,12 @@ public class serverJava {
                 System.out.println("Client: " + clientMessage);
 
                 // Scrive una risposta al client
-                System.out.print("Server: ");
-                serverMessage = consoleReader.readLine();
-                writer.println(serverMessage);
-
-                if (serverMessage.equalsIgnoreCase("stop")) {
-                    System.out.println("Connessione chiusa dal server.");
+                //System.out.print("Server: ");
+                //serverMessage = consoleReader.readLine();
+                //writer.println(serverMessage);
+                writer.println("Server: " + clientMessage.toUpperCase());
+                if (clientMessage.equalsIgnoreCase("stop")) {
+                    System.out.println("Connessione chiusa dal client.");
                     break;
                 }
             }
