@@ -5,23 +5,38 @@ public class clientJava {
     public static void main(String[] args) {
         String hostname = "10.130.1.118"; // Nome host o IP del server
         int port = 12345; // Porta del server
-        
+
         try (Socket socket = new Socket(hostname, port)) {
             // Stream di input/output
-            OutputStream output = socket.getOutputStream();
-            PrintWriter writer = new PrintWriter(output, true);
-            
-            InputStream input = socket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
 
-            // Invia un messaggio al server
-            String message = "Ciao, server!";
-            writer.println(message);
-            System.out.println("Messaggio inviato: " + message);
+            BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
-            // Legge la risposta dal server
-            String response = reader.readLine();
-            System.out.println("Risposta dal server: " + response);
+            String clientMessage;
+            String serverMessage;
+
+            System.out.println("Connesso al server. Pronto per comunicare...");
+
+            while (true) {
+                // Scrive un messaggio al server
+                System.out.print("Client: ");
+                clientMessage = consoleReader.readLine();
+                writer.println(clientMessage);
+
+                if (clientMessage.equalsIgnoreCase("bye")) {
+                    System.out.println("Connessione chiusa dal client.");
+                    break;
+                }
+
+                // Legge la risposta dal server
+                serverMessage = reader.readLine();
+                if (serverMessage == null || serverMessage.equalsIgnoreCase("bye")) {
+                    System.out.println("Il server ha chiuso la connessione.");
+                    break;
+                }
+                System.out.println("Server: " + serverMessage);
+            }
         } catch (UnknownHostException ex) {
             System.out.println("Server non trovato: " + ex.getMessage());
         } catch (IOException ex) {
