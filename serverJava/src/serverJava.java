@@ -1,34 +1,48 @@
 import java.io.*;
 import java.net.*;
 
-public class TCPServer {
+public class serverJava {
     public static void main(String[] args) {
         int port = 12345; // Porta del server
-        
+
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server in ascolto sulla porta " + port);
-            
+
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Connessione accettata da: " + clientSocket.getInetAddress());
+
+            // Stream di input/output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+
+            String clientMessage;
+            String serverMessage;
+
+            System.out.println("Pronto per comunicare con il client...");
+
             while (true) {
-                Socket clientSocket = serverSocket.accept();
-                System.out.println("Connessione accettata da: " + clientSocket.getInetAddress());
-
-                // Stream di input/output
-                InputStream input = clientSocket.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                
-                OutputStream output = clientSocket.getOutputStream();
-                PrintWriter writer = new PrintWriter(output, true);
-
                 // Legge il messaggio dal client
-                String message = reader.readLine();
-                System.out.println("Messaggio ricevuto: " + message);
+                clientMessage = reader.readLine();
+                if (clientMessage == null || clientMessage.equalsIgnoreCase("bye")) {
+                    System.out.println("Il client ha chiuso la connessione.");
+                    break;
+                }
+                System.out.println("Client: " + clientMessage);
 
-                // Risponde al client
-                writer.println("Risposta dal server: " + message.toUpperCase());
+                // Scrive una risposta al client
+                System.out.print("Server: ");
+                serverMessage = consoleReader.readLine();
+                writer.println(serverMessage);
 
-                // Chiude la connessione
-                clientSocket.close();
+                if (serverMessage.equalsIgnoreCase("bye")) {
+                    System.out.println("Connessione chiusa dal server.");
+                    break;
+                }
             }
+
+            clientSocket.close();
         } catch (IOException ex) {
             System.out.println("Errore nel server: " + ex.getMessage());
             ex.printStackTrace();
