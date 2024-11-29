@@ -35,7 +35,7 @@ public class clientJava {
                     System.out.println("Il server ha chiuso la connessione.");
                     break;
                 }
-                System.out.println("Server: " + serverMessage);
+                System.out.println(serverMessage);
             }
         } catch (UnknownHostException ex) {
             System.out.println("Server non trovato: " + ex.getMessage());
